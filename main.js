@@ -24,6 +24,7 @@ const allClear = () => {
 // HANDLE CLICKING EVENTS
 btns.addEventListener('click', (e) => {
 	const target = e.target;
+	const value = target.textContent;
 
 	if (!target.classList.contains('button')) return;
 	//if missclicked button- return
@@ -33,8 +34,18 @@ btns.addEventListener('click', (e) => {
 		//if clicked AC- allClear function loaded
 	}
 
-	// value defined as clicked element's text content (operator/number)
-	const value = target.textContent;
+	if (target.classList.contains('positive-negative')) {
+		if (output.textContent === '0') return;
+
+		if (y === '' && operator === '') {
+			x = (parseFloat(x) * -1).toString();
+			output.textContent = x;
+		} else {
+			y = (parseFloat(y) * -1).toString();
+			output.textContent = y;
+		}
+		return;
+	}
 
 	// NUMBERS
 	if (numbers.includes(value)) {
@@ -75,8 +86,8 @@ btns.addEventListener('click', (e) => {
 				}
 			}
 
-			x = res.toString(); 
-			y = ''; 
+			x = res.toString();
+			y = '';
 			output.textContent = x;
 		}
 
